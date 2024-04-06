@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StV Project Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="login-section">
+    <h2>Login</h2>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div id="dashboard" style="display: none;">
+    <h2>StV Project Dashboard</h2>
+
+     <!-- Add Project Button -->
+     <button id="toggle-add-project" class="btn">Add New Project</button>
+    
+    <!-- Add Project Form -->
+    <div id="add-project-section" style="display: none;">
+        <h3>Add New Project</h3>
+        <form id="add-project-form">
+            <label for="project-name">Name:</label>
+            <input type="text" id="project-name" name="project-name" required><br><br>
+            <label for="project-description">Description:</label>
+            <textarea id="project-description" name="project-description" required></textarea><br><br>
+            <label for="project-category">Category:</label>
+            <input type="text" id="project-category" name="project-category" required><br><br>
+            <label for="project-status">Status:</label>
+            <input type="text" id="project-status" name="project-status" required><br><br>
+            <label for="project-start-date">Start Date:</label>
+            <input type="date" id="project-start-date" name="project-start-date" required><br><br>
+            <label for="project-detailed-status">Detailed Status:</label>
+            <textarea id="project-detailed-status" name="project-detailed-status" required></textarea><br><br>
+            <label for="project-team">Team:</label>
+            <input type="text" id="project-team" name="project-team" required><br><br>
+            <button type="submit">Add Project</button>
+        </form>
+    </div>
+    
+    <!-- Project List Section -->
+    <div id="project-list">
+        <h3>Project List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>Detailed Status</th>
+                    <th>Team</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="project-list-body">
+                <!-- Project items will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // JavaScript code for login functionality and project management
+    
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+        // Your login authentication logic goes here
+        
+        // For demonstration purpose, assume successful login
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+    });
+    
+    document.getElementById('add-project-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Add project logic goes here
+        
+        // For demonstration purpose, let's assume project added successfully
+        alert('Project added successfully!');
+    });
+</script>
+
+</body>
+</html>
