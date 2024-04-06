@@ -3,6 +3,8 @@
 ## Idea:
 The StV needs a new project dashboard. We basically want to make the old system a bit more usable: https://docs.google.com/spreadsheets/d/1zDA9RtYCeS_W9kqg-fvT_ZM88MHDR_vEhD6qcAP12aM
 
+There are many areas where additional pages might be used (e.g. login, add project, view project details etc.). If none of them work out, we might add a team page. Similarly, endpoints listed below will be extended as the project matures.
+
 ## Registration: 
 Yes, only registered users can add projects (but unregistered ones can read them).
 Potentially even additional permission perimeters (admin access, ÖH access, guest view)
@@ -10,9 +12,9 @@ Potentially even additional permission perimeters (admin access, ÖH access, gue
 ## Interactions: 
 
 ### Essential: 
-View all projects, View filtered / sorted projects, Add a project, Update a project (especially project status), Delete a project.
+View all projects (GET), View filtered / sorted projects (GET), Add a project (POST), Update a project (especially project status, PUT), Delete a project (DELETE).
 ### Optional: 
-View project status history (i.e. who updated it, what was a previous status...) 
+View project status history (i.e. who updated it, what was a previous status..., GET), View team members (GET), Add new team members (POST), Update team members (PUT), Remove team members (DELETE) 
 
 ## Bi-directional communication:
 Updates to projects are live and should happen without reload.
