@@ -1,0 +1,21 @@
+# Project Dashboard
+
+## Idea:
+The StV needs a new project dashboard. We basically want to make the old system a bit more usable: https://docs.google.com/spreadsheets/d/1zDA9RtYCeS_W9kqg-fvT_ZM88MHDR_vEhD6qcAP12aM
+
+## Registration: 
+Yes, only registered users can add projects (but unregistered ones can read them).
+Potentially even additional permission perimeters (admin access, ÖH access, guest view)
+
+## Interactions: 
+
+### Essential: 
+View all projects, View filtered / sorted projects, Add a project, Update a project (especially project status), Delete a project.
+### Optional: 
+View project status history (i.e. who updated it, what was a previous status...) 
+
+## Bi-directional communication:
+Updates to projects are live and should happen without reload.
+
+## Team:
+Felix Ferchhumer, Helena Fitze
