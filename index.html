@@ -5,26 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StV Project Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional CSS for arrow */
+        .arrow-icon {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
-<div id="login-section">
-    <h2>Login</h2>
-    <form id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-</div>
-
-<div id="dashboard" style="display: none;">
+<div id="dashboard" style="display: block;">
     <h2>StV Project Dashboard</h2>
-
-     <!-- Add Project Button -->
-     <button id="toggle-add-project" class="btn">Add New Project</button>
     
+    
+    <div id="login-section">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <!-- Arrow for toggling Add Project Section -->
+    <div class="arrow-icon" id="toggle-add-project">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+        </svg>
+    </div>
+
     <!-- Add Project Form -->
     <div id="add-project-section" style="display: none;">
         <h3>Add New Project</h3>
@@ -35,42 +46,40 @@
             <textarea id="project-description" name="project-description" required></textarea><br><br>
             <label for="project-category">Category:</label>
             <input type="text" id="project-category" name="project-category" required><br><br>
-            <label for="project-status">Status:</label>
-            <input type="text" id="project-status" name="project-status" required><br><br>
-            <label for="project-start-date">Start Date:</label>
-            <input type="date" id="project-start-date" name="project-start-date" required><br><br>
-            <label for="project-detailed-status">Detailed Status:</label>
-            <textarea id="project-detailed-status" name="project-detailed-status" required></textarea><br><br>
             <label for="project-team">Team:</label>
-            <input type="text" id="project-team" name="project-team" required><br><br>
+            <select id="project-team" name="project-team" multiple required>
+                <option value="Helena">Helena</option>
+                <option value="Felix">Felix</option>
+                <option value="Markus">Markus</option>
+            </select><br><br>
             <button type="submit">Add Project</button>
         </form>
     </div>
-    
+
+
     <!-- Project List Section -->
     <div id="project-list">
         <h3>Project List</h3>
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Project</th>
                     <th>Description</th>
                     <th>Category</th>
                     <th>Status</th>
-                    <th>Start Date</th>
-                    <th>Detailed Status</th>
+                    <th>Status Information</th>
                     <th>Team</th>
-                    <th>Action</th>
+                    <th>last Update</th>
                 </tr>
             </thead>
             <tbody id="project-list-body">
-                <!-- Project items will be dynamically added here -->
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
+
     // JavaScript code for login functionality and project management
     
     document.getElementById('login-form').addEventListener('submit', function(event) {
@@ -78,20 +87,55 @@
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
-        // Your login authentication logic goes here
         
         // For demonstration purpose, assume successful login
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('dashboard').style.display = 'block';
     });
     
+    // Toggle Add Project Section
+    document.getElementById('toggle-add-project').addEventListener('click', function() {
+        var addProjectSection = document.getElementById('add-project-section');
+        addProjectSection.style.display = (addProjectSection.style.display === 'none' || addProjectSection.style.display === '') ? 'block' : 'none';
+    });
+    
     document.getElementById('add-project-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        // Add project logic goes here
-        
-        // For demonstration purpose, let's assume project added successfully
+
+        // For demonstration purpose, let's pretend project added successfully
         alert('Project added successfully!');
     });
+
+     // Function to populate the table with example projects
+     function populateProjectList() {
+        var projects = [
+            { name: "Statue von Markus im TNF-Kammerl", description: "Lebensgroße Marmorstatue von Markus, die zur Verherrlichung vor jedem StV-Café angebetet wird.", category: "Internal", status: "Rejected", statusInfo: "WTF?!", team: ["Markus"], lastUpdate: "2024-04-06" },
+            { name: "Großbestellung Sternchen-Sticker", description: "Vorrat aufstocken", category: "Service", status: "Completed", statusInfo: "Können im Unterricht abgeholt werden.", team: ["Felix", "Helena"], lastUpdate: "2024-04-05" },
+        ];
+
+        var tableBody = document.getElementById('project-list-body');
+
+        // Clear existing table rows
+        tableBody.innerHTML = '';
+
+        // Populate table with projects
+        projects.forEach(function(project) {
+            var row = document.createElement('tr');
+
+            row.innerHTML = '<td>' + project.name + '</td>' +
+                             '<td>' + project.description + '</td>' +
+                             '<td>' + project.category + '</td>' +
+                             '<td>' + project.status + '</td>' +
+                             '<td>' + project.statusInfo + '</td>' +
+                             '<td>' + project.team.join(', ') + '</td>' +
+                             '<td>' + project.lastUpdate + '</td>';
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    populateProjectList(); // temp
+
 </script>
 
 </body>
